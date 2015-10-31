@@ -1,0 +1,118 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/func")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+}
+
+
+<div class="page-header">
+    <h1>Управление списком сеансов</h1>
+</div>
+
+<div class="container">
+    <div class="panel panel-default col-md-6" data-bind="visible: view">
+        <div class="panel-heading" data-bind="visible: view">
+            <h2 class="panel-title">Сеансы</h2>
+        </div>
+        <div class="panel-body">
+            <ul class="list-unstyled" data-bind="foreach: seances">
+                <li>
+                    <span data-bind="text: CinemaName"></span> <span data-bind="text: FilmName"> </span> <span type data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></span>
+                    <small><a href="#" data-bind="click: $parent.getSeance">Редактировать</a></small>
+                    <small><a href="#" data-bind="click: $parent.deleteSeance">Удалить</a></small>
+                </li>
+            </ul>
+
+            <button class="btn btn-primary" data-bind="click: handleCreateClick,visible: view">Добавить</button>
+        </div>
+
+    </div>
+    <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default" data-bind="visible: edit">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Редактирование фильма</h2>
+                </div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal" data-bind="submit: editSeance">
+                        <div class="form-group">
+                            <label for="inputAuthor" class="col-lg-2 col-sm-offset-1 control-label">Кинотеатр:</label>
+                            <div class="col-sm-offset-2 col-sm-7">
+                                <select class="form-control" data-bind="options:cinemas, optionsText: 'CinemaName',optionsValue: 'CinemaId', value: editCinemaId"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editFilm" class="col-lg-2 col-sm-offset-1 control-label">Фильм:</label>
+                            <div class="col-sm-offset-2 col-sm-7">
+                                <select class="form-control" data-bind="options: films, optionsText: 'FilmName', optionsValue: 'FilmId', value: editFilmId"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDT" class="col-lg-5 control-label">Дата и время сеанса</label>
+                            <div class="col-sm-7">
+                                <input type="datetime-local" class="form-control" max="9999-12-31 00:00" id="inputDT" data-bind="value: editSeanceDT" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: edit">Отмена</button>
+                            <button type="submit" class="col-lg-offset-6 btn btn-success">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4" data-bind="visible: edit">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Редактируемые данные</h2>
+                </div>
+                <table class="table" data-bind="foreach: seance">
+                    <tr><td>Кинотеатр</td><td data-bind="text: CinemaName"></td></tr>
+                    <tr><td>Фильм</td><td data-bind="text: FilmName"></td></tr>
+                    <tr><td>Время сеанса</td><td data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></td></tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-5" data-bind="visible: create">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Добавить сеанс</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: addSeance">
+                    <div class="form-group">
+                        <label for="inputAuthor" class="col-sm-2 col-sm-offset-1 control-label">Кинотеатр:</label>
+                        <div class="col-sm-offset-1 col-sm-7">
+                            <select class="form-control" data-bind="options:cinemas, optionsText: 'CinemaName',optionsValue:'CinemaId', value: newseance.CinemaId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFilm" class="col-sm-2 col-sm-offset-1 control-label">Фильм:</label>
+                        <div class="col-sm-offset-1 col-sm-7">
+                            <select class="form-control" data-bind="options: films, optionsText: 'FilmName', optionsValue: 'FilmId', value: newseance.FilmId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" data-bind="with: newseance">
+                        <label for="inputDT" class="col-sm-4 control-label">Дата и время:</label>
+                        <div class=" col-sm-7">
+                            <input class="form-control" type="datetime-local" max="9999-12-31 00:00" id="inputDT" data-bind="value: SeanceDT" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: create">Отмена</button>
+                        <button type="submit" class="col-lg-offset-4 btn btn-success">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/func")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+}
+
+<div class="page-header">
+    <h1>Афиша</h1>
+</div>
+
+<div class="row">
+
+    <div class="panel panel-default col-md-6" data-bind="visible: view">
+    <div class="panel-heading" data-bind="visible: view">
+        <h2 class="panel-title">Сеансы</h2>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr><th>Кинотеатр</th><th>Фильм</th><th>Дата и время</th></tr>
+            <tbody data-bind ="foreach: Affiche">
+                <tr> <td data-bind="text: CinemaName"></td> <td data-bind="text: FilmName"> </td> <td data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></td></tr>
+            </tbody>
+        </table>
+        <button class=" btn btn-default" data-bind="click: AllAffiche">Вся афиша</button>
+    </div>
+        
+</div>
+    <div class="form-group">
+        <label for="searchCinema" class="col-sm-2 control-label">Поиск по кинотеатру:</label>
+        <div class="col-sm-2 ">
+            <input type="text" class="col-sm-2 form-control" id="searchCinema" data-bind="value: stringSearch" placeholder="Название кинотеатра" />
+        </div>
+        <button class="btn btn-default" data-bind="click: SearchCinema">Поиск</button>
+
+    </div>
+    <div class="form-group">
+        <label for="searchFilm" class="col-sm-2 control-label">Поиск по фильму:</label>
+        <div class="col-sm-2">
+            <input type="text" class="col-sm-2 form-control" id="searchFiilm" data-bind="value: stringSearch" placeholder="Название фильма" />
+        </div>
+        <button class=" btn btn-default" data-bind="click: SearchFilm">Поиск</button>
+
+    </div>
+    <div class="form-group">
+        <label for="searchTime" class="col-sm-2 control-label">Поиск по времени:</label>
+        <div class="col-sm-2">
+            <input class="form-control" type="datetime-local" max="9999-12-31 00:00" id="fromtDT" data-bind="value: fromDT" />
+            <input class="form-control" type="datetime-local" max="9999-12-31 00:00" id="beforeDT" data-bind="value: beforeDT" />
+
+        </div>
+        <button class=" btn btn-default" data-bind="click: SearchDT">Поиск</button>
+
+    </div>
+    
+
+    <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+</div>
+
+    
