@@ -178,6 +178,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510211759543_InitialCreate.cs" />
+    <Compile Include="Migrations\201510211759543_InitialCreate.Designer.cs">
+      <DependentUpon>201510211759543_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511021940070_Initial.cs" />
+    <Compile Include="Migrations\201511021940070_Initial.Designer.cs">
+      <DependentUpon>201511021940070_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AfficheContext.cs" />
     <Compile Include="Models\AfficheInitializer.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -248,6 +257,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\lab2-affiches.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\func.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -292,7 +302,14 @@
     <Content Include="Views\Home\Film.cshtml" />
     <Content Include="Views\Home\Seance.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510211759543_InitialCreate.resx">
+      <DependentUpon>201510211759543_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511021940070_Initial.resx">
+      <DependentUpon>201511021940070_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
