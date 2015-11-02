@@ -1,0 +1,87 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/func")
+}
+
+<script src="@Url.Content("~/scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+<div class="page-header">
+    <h1>Управление списком кинотеатров</h1>
+</div>
+<div class="container">
+    <div class="row">
+            <div class="panel panel-default col-md-5" data-bind="visible: view">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Кинотеатры</h2>
+                </div>
+                <div class="panel-body">
+                    <table class=" table">
+                        <tr><th>Название кинотеатра</th></tr>
+                        <tbody data-bind="foreach: cinemas">
+                            <tr>
+                                <td data-bind="text: CinemaName"></td>
+                                <td><small><a href="#" data-bind="click: $parent.getCinema">Редактировать</a></small></td>
+                                <td><small><a href="#" data-bind="click: $parent.deleteCinema">Удалить</a></small></td>
+                                </tr>
+                                </table>
+                                <button class="btn btn-primary" data-bind="click: handleCreateClick,visible: view">Добавить</button>
+                </div>
+            </div>
+            <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+
+
+            <div class="panel panel-default col-md-4" data-bind="visible: edit">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Редактирование кинотеатра</h2>
+                </div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal" data-bind="submit: editCinema">
+                        <div class="form-group">
+                            <label for="editCinema" class="col-sm-2 control-label">Название:</label>
+                            <div class="col-sm-offset-1 col-sm-8">
+                                <input type="text" class="form-control" id="editCinema" data-bind="value: cinema().CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$" placeholder="Название кинотеатра" />
+                            </div>
+                        </div>
+                        <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: edit">Отмена</button>
+
+                        <button type="submit" class="col-lg-offset-4 btn btn-success">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+      
+
+        <div class="col-md-4" data-bind="visible: edit">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Редактируемые данные</h2>
+                </div>
+                <table class="table" data-bind="foreach: cinema">
+                    <tr><td>Кинотеатр</td><td data-bind="text: CinemaName"></td></tr>
+                </table>
+            </div>
+        </div>
+
+            <div class="panel panel-default col-md-4" data-bind="visible: create">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Добавить кинотеатр</h2>
+                </div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal" data-bind="submit: addCinema">
+                        <div class="form-group" data-bind="with: newcinema">
+                            <label for="inputCinemaName" class="col-sm-2 control-label">Название:</label>
+                            <div class="col-sm-offset-1 col-sm-8">
+                                <input type="text" class="form-control" id="inputCinemaName"
+                                       data-bind="value: CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$" placeholder="Название кинотеатра" />
+                            </div>
+
+                        </div>
+                        <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: create">Отмена</button>
+
+                        <button type="submit" class="col-lg-offset-4 btn btn-success">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        
+    </div>
+
+</div>

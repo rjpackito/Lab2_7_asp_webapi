@@ -29,9 +29,11 @@
     self.view = ko.observable(true);
     self.edit = ko.observable(false);
     self.create = ko.observable(false);
-    self.stringSearch = ko.observable();
-    self.fromDT = ko.observable();
-    self.beforeDT = ko.observable();
+    self.stringSearchCinema = ko.observable("");
+    self.stringSearchFilm = ko.observable("");
+
+    self.fromDT = ko.observable("");
+    self.beforeDT = ko.observable("");
     var cinemasUri = 'http://localhost:9542/api/Cinema';
     var filmUri = 'http://localhost:9542/api/Film';
     var seanceUri = 'http://localhost:9542/api/Seance';
@@ -55,7 +57,9 @@
     }
     self.getCinema = function (item) {
         ajaxHelper(cinemasUri + '/' + item.CinemaId, 'GET').done(function (data) {
-
+            self.view(false);
+            self.create(false);
+            self.edit(true);
             self.cinema(data);
         });
     }
@@ -93,7 +97,9 @@
     }
     self.getFilm = function (item) {
         ajaxHelper(filmUri + '/' + item.FilmId, 'GET').done(function (data) {
-
+            self.view(false);
+            self.create(false);
+            self.edit(true);
             self.film(data);
         });
     }
@@ -193,13 +199,13 @@
 
     self.SearchCinema = function () {
         self.Affiche.removeAll();
-        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.CinemaName == self.stringSearch(); }));
-        self.stringSearch('');
+        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.CinemaName == self.stringSearchCinema(); }));
+        self.stringSearchCinema('');
     }
     self.SearchFilm = function () {
         self.Affiche.removeAll();
-        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.FilmName == self.stringSearch(); }));
-        self.stringSearch('');
+        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.FilmName == self.stringSearchFilm(); }));
+        self.stringSearchFilm('');
     }
     self.SearchDT = function () {
         self.Affiche.removeAll();

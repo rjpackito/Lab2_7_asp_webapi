@@ -10,22 +10,24 @@
 </div>
 
 <div class="container">
-    <div class="panel panel-default col-md-6" data-bind="visible: view">
-        <div class="panel-heading" data-bind="visible: view">
-            <h2 class="panel-title">Сеансы</h2>
+    <div class="panel panel-default col-md-10" data-bind="visible: view">
+        <div class="panel-heading" >
+            <h2 class="panel-title ">Сеансы</h2>
         </div>
         <div class="panel-body">
-            <ul class="list-unstyled" data-bind="foreach: seances">
-                <li>
-                    <span data-bind="text: CinemaName"></span> <span data-bind="text: FilmName"> </span> <span type data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></span>
-                    <small><a href="#" data-bind="click: $parent.getSeance">Редактировать</a></small>
-                    <small><a href="#" data-bind="click: $parent.deleteSeance">Удалить</a></small>
-                </li>
-            </ul>
-
+            <table class=" table">
+                <tr><th>Кинотеатр</th><th>Фильм</th><th>Дата и время</th></tr>
+                <tbody data-bind="foreach: seances">
+                    <tr>
+                        <td data-bind="text: CinemaName"></td>
+                        <td data-bind="text: FilmName"> </td>
+                        <td data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></td>
+                        <td><small><a href="#" data-bind="click: $parent.getSeance">Редактировать</a></small></td>
+                        <td><small><a href="#" data-bind="click: $parent.deleteSeance">Удалить</a></small></td>
+                    </tr>
+            </table>
             <button class="btn btn-primary" data-bind="click: handleCreateClick,visible: view">Добавить</button>
         </div>
-
     </div>
     <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
 
