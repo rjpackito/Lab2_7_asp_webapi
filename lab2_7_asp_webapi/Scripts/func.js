@@ -34,9 +34,9 @@
 
     self.fromDT = ko.observable("");
     self.beforeDT = ko.observable("");
-    var cinemasUri = 'http://localhost:9542/api/Cinema';
-    var filmUri = 'http://localhost:9542/api/Film';
-    var seanceUri = 'http://localhost:9542/api/Seance';
+    var cinemasUri = '/api/Cinema';
+    var filmUri = '/api/Film';
+    var seanceUri = '/api/Seance';
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
         return $.ajax({

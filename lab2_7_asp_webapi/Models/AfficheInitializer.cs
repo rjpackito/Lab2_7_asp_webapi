@@ -28,7 +28,6 @@ namespace lab2_7_asp_webapi.Models
             };
             seances.ForEach(s => context.Seances.Add(s));
             context.SaveChanges();
-            //base.Seed(context);
         }
     }
 }
