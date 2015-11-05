@@ -69,6 +69,8 @@
         };
         ajaxHelper(cinemasUri, 'POST', cinema).done(function (item) {
             self.cinemas.push(item);
+            self.newcinema.CinemaName('');
+           self.handleCancelClick();
         });
     }
     self.editCinema = function (formElement) {
@@ -109,6 +111,8 @@
         };
         ajaxHelper(filmUri, 'POST', film).done(function (item) {
             self.films.push(item);
+            self.newfilm.FilmName('');
+            self.handleCancelClick();
         });
     }
     self.editFilm = function (formElement) {
