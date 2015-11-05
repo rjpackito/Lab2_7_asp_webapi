@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using lab2_7_asp_webapi.Models;
+using System.Text.RegularExpressions;
 
 namespace lab2_7_asp_webapi.Controllers
 {
@@ -43,7 +44,11 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFilm(int id, Film film)
         {
-            if (!ModelState.IsValid)
+            string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
+            string entry = "";
+            entry = Regex.Replace(film.FilmName, pattern, String.Empty);
+
+            if (!ModelState.IsValid || film.FilmName == "" || entry != "")
             {
                 return BadRequest(ModelState);
             }
@@ -78,7 +83,11 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(Film))]
         public IHttpActionResult PostFilm(Film film)
         {
-            if (!ModelState.IsValid)
+            string pattern=@"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
+            string entry="";
+            entry=Regex.Replace(film.FilmName,pattern,String.Empty);
+            
+            if (!ModelState.IsValid || film.FilmName=="" || entry!="")
             {
                 return BadRequest(ModelState);
             }

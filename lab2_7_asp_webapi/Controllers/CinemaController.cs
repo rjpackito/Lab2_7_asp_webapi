@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using lab2_7_asp_webapi.Models;
+using System.Text.RegularExpressions;
 
 namespace lab2_7_asp_webapi.Controllers
 {
@@ -43,7 +44,10 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCinema(int id, Cinema cinema)
         {
-            if (!ModelState.IsValid)
+            string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
+            string entry = "";
+            entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
+            if (!ModelState.IsValid || cinema.CinemaName == "" || entry != "")
             {
                 return BadRequest(ModelState);
             }
@@ -78,7 +82,10 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(Cinema))]
         public IHttpActionResult PostCinema(Cinema cinema)
         {
-            if (!ModelState.IsValid)
+            string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
+            string entry = "";
+            entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
+            if (!ModelState.IsValid || cinema.CinemaName == "" || entry != "")
             {
                 return BadRequest(ModelState);
             }
