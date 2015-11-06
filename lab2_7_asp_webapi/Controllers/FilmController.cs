@@ -47,12 +47,15 @@ namespace lab2_7_asp_webapi.Controllers
             string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
             string entry = "";
             entry = Regex.Replace(film.FilmName, pattern, String.Empty);
-
-            if (!ModelState.IsValid || film.FilmName == "" || entry != "")
+            if (film.FilmName == "" || entry != "")
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            if (!ModelState.IsValid )
             {
                 return BadRequest(ModelState);
             }
-
+            
             if (id != film.FilmId)
             {
                 return BadRequest();
@@ -86,12 +89,16 @@ namespace lab2_7_asp_webapi.Controllers
             string pattern=@"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
             string entry="";
             entry=Regex.Replace(film.FilmName,pattern,String.Empty);
-            
-            if (!ModelState.IsValid || film.FilmName=="" || entry!="")
+
+            if (film.FilmName == "" || entry != "")
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            if (!ModelState.IsValid )
             {
                 return BadRequest(ModelState);
             }
-
+           
             db.Films.Add(film);
             db.SaveChanges();
 

@@ -47,7 +47,11 @@ namespace lab2_7_asp_webapi.Controllers
             string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
             string entry = "";
             entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
-            if (!ModelState.IsValid || cinema.CinemaName == "" || entry != "")
+            if (cinema.CinemaName == "" || entry != "")
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            if (!ModelState.IsValid )
             {
                 return BadRequest(ModelState);
             }
@@ -85,7 +89,11 @@ namespace lab2_7_asp_webapi.Controllers
             string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
             string entry = "";
             entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
-            if (!ModelState.IsValid || cinema.CinemaName == "" || entry != "")
+            if (cinema.CinemaName == "" || entry != "")
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }

@@ -15,7 +15,7 @@
     };
     self.newfilm = {
         FilmId: ko.observable(),
-        FilmName: ko.observable()
+        FilmName: ko.observable("")
     };
     self.newseance = {
         SeanceId: ko.observable(),
@@ -68,6 +68,11 @@
             CinemaName: self.newcinema.CinemaName()
         };
         ajaxHelper(cinemasUri, 'POST', cinema).done(function (item) {
+            if (item == undefined) {
+                self.error("Введены некорректные данные");
+                self.handleCancelClick();
+                return;
+            }
             self.cinemas.push(item);
             self.newcinema.CinemaName('');
            self.handleCancelClick();
@@ -79,6 +84,11 @@
             CinemaName: self.cinema().CinemaName
         };
         ajaxHelper(cinemasUri + '/' + updateCinema.CinemaId, 'PUT', updateCinema).done(function () {
+            if (item == undefined) {
+                self.error("Введены некорректные данные");
+                self.handleCancelClick();
+                return;
+            }
             self.cinemas.removeAll();
             getAllCinemas();
         });
@@ -110,7 +120,12 @@
             FilmName: self.newfilm.FilmName()
         };
         ajaxHelper(filmUri, 'POST', film).done(function (item) {
-            self.films.push(item);
+            if (item == undefined) {
+                self.error("Введены некорректные данные");
+                    self.handleCancelClick();
+                    return;
+            }
+       
             self.newfilm.FilmName('');
             self.handleCancelClick();
         });
@@ -121,6 +136,11 @@
             FilmName: self.film().FilmName
         };
         ajaxHelper(filmUri + '/' + updateFilm.FilmId, 'PUT', updateFilm).done(function () {
+            if (item == undefined) {
+                self.error("Введены некорректные данные");
+                self.handleCancelClick();
+                return;
+            }
             self.films.removeAll();
             getAllFilms();
         });
