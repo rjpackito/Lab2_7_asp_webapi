@@ -3,7 +3,7 @@ namespace lab2_7_asp_webapi.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initialize : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace lab2_7_asp_webapi.Migrations
                 c => new
                     {
                         CinemaId = c.Int(nullable: false, identity: true),
-                        CinemaName = c.String(),
+                        CinemaName = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.CinemaId);
             
@@ -36,7 +36,7 @@ namespace lab2_7_asp_webapi.Migrations
                 c => new
                     {
                         FilmId = c.Int(nullable: false, identity: true),
-                        FilmName = c.String(),
+                        FilmName = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.FilmId);
             

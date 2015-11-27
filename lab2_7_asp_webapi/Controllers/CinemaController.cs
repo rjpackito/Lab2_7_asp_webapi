@@ -44,16 +44,9 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCinema(int id, Cinema cinema)
         {
-            string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
-            string entry = "";
-            entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
-            if (cinema.CinemaName == "" || entry != "")
-            {
-                return StatusCode(HttpStatusCode.NoContent);
-            }
             if (!ModelState.IsValid )
             {
-                return BadRequest(ModelState);
+                return Ok(ModelState.Values);
             }
 
             if (id != cinema.CinemaId)
@@ -86,16 +79,10 @@ namespace lab2_7_asp_webapi.Controllers
         [ResponseType(typeof(Cinema))]
         public IHttpActionResult PostCinema(Cinema cinema)
         {
-            string pattern = @"^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$";
-            string entry = "";
-            entry = Regex.Replace(cinema.CinemaName, pattern, String.Empty);
-            if (cinema.CinemaName == "" || entry != "")
-            {
-                return StatusCode(HttpStatusCode.NoContent);
-            }
+            
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(ModelState.Values);
             }
 
             db.Cinemas.Add(cinema);

@@ -25,7 +25,6 @@
                                 <button class="btn btn-primary" data-bind="click: handleCreateClick,visible: view">Добавить</button>
                 </div>
             </div>
-            <div class="alert alert-danger col-sm-5" data-bind="visible: error"><p data-bind="text: error"></p></div>
 
 
             <div class="panel panel-default col-md-4" data-bind="visible: edit">
@@ -38,7 +37,7 @@
                         <div class="form-group">
                             <label for="editCinema" class="col-sm-2 control-label">Название:</label>
                             <div class="col-sm-offset-1 col-sm-8">
-                                <input type="text" class="form-control" id="editCinema" data-bind="value: cinema().CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$" placeholder="Название кинотеатра" />
+                                <input type="text" class="form-control" id="editCinema" data-bind="value: cinema().CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9]+)*$"  placeholder="Название кинотеатра" />
                             </div>
                         </div>
                         <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: edit">Отмена</button>
@@ -66,12 +65,12 @@
                 </div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" data-bind="submit: addCinema">
+                    <form role="form" class="form-horizontal" data-bind="submit: addCinema">
                         <div class="form-group" data-bind="with: newcinema">
                             <label for="inputCinemaName" class="col-sm-2 control-label">Название:</label>
                             <div class="col-sm-offset-1 col-sm-8">
                                 <input type="text" class="form-control" id="inputCinemaName"
-                                       data-bind="value: CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9])*$" placeholder="Название кинотеатра" />
+                                       data-bind="value: CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9]+)*$" placeholder="Название кинотеатра" />
                             </div>
 
                         </div>
@@ -83,5 +82,7 @@
             </div>
         
     </div>
+   
+    <div class="alert alert-danger col-sm-5 " data-bind="visible: error"><p data-bind="text: error"></p></div>
 
 </div>

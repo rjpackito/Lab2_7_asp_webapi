@@ -178,13 +178,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510211759543_InitialCreate.cs" />
-    <Compile Include="Migrations\201510211759543_InitialCreate.Designer.cs">
-      <DependentUpon>201510211759543_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511021940070_Initial.cs" />
-    <Compile Include="Migrations\201511021940070_Initial.Designer.cs">
-      <DependentUpon>201511021940070_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201511270916376_Initialize.cs" />
+    <Compile Include="Migrations\201511270916376_Initialize.Designer.cs">
+      <DependentUpon>201511270916376_Initialize.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AfficheContext.cs" />
@@ -272,6 +268,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -302,14 +300,7 @@
     <Content Include="Views\Home\Cinema.cshtml" />
     <Content Include="Views\Home\Film.cshtml" />
     <Content Include="Views\Home\Seance.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510211759543_InitialCreate.resx">
-      <DependentUpon>201510211759543_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511021940070_Initial.resx">
-      <DependentUpon>201511021940070_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Scripts\knockout.validation.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -317,6 +308,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201511270916376_Initialize.resx">
+      <DependentUpon>201511270916376_Initialize.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

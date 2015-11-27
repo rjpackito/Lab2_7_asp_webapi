@@ -25,6 +25,7 @@ namespace lab2_7_asp_webapi
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/func").Include(
               "~/Scripts/knockout-{version}.js",
+               "~/Scripts/knockout.validation.js",
               "~/Scripts/func.js"
               ));
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(

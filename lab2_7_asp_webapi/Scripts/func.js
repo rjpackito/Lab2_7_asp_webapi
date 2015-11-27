@@ -10,8 +10,8 @@
     self.Affiche = ko.observableArray();
     
     self.newcinema = {
-        CinemaId: ko.observable(),
-        CinemaName: ko.observable()
+        CinemaId: ko.observable(0),
+        CinemaName: ko.observable(null)
     };
     self.newfilm = {
         FilmId: ko.observable(),
@@ -68,9 +68,8 @@
             CinemaName: self.newcinema.CinemaName()
         };
         ajaxHelper(cinemasUri, 'POST', cinema).done(function (item) {
-            if (item == undefined) {
-                self.error("Введены некорректные данные");
-                self.handleCancelClick();
+            if (item[0]) {
+                self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
             self.cinemas.push(item);
@@ -84,9 +83,8 @@
             CinemaName: self.cinema().CinemaName
         };
         ajaxHelper(cinemasUri + '/' + updateCinema.CinemaId, 'PUT', updateCinema).done(function () {
-            if (item == undefined) {
-                self.error("Введены некорректные данные");
-                self.handleCancelClick();
+            if (item[0]) {
+                self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
             self.cinemas.removeAll();
@@ -120,10 +118,9 @@
             FilmName: self.newfilm.FilmName()
         };
         ajaxHelper(filmUri, 'POST', film).done(function (item) {
-            if (item == undefined) {
-                self.error("Введены некорректные данные");
-                    self.handleCancelClick();
-                    return;
+            if (item[0]) {
+                self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
+                return;
             }
        
             self.newfilm.FilmName('');
@@ -136,9 +133,8 @@
             FilmName: self.film().FilmName
         };
         ajaxHelper(filmUri + '/' + updateFilm.FilmId, 'PUT', updateFilm).done(function () {
-            if (item == undefined) {
-                self.error("Введены некорректные данные");
-                self.handleCancelClick();
+            if (item[0]) {
+                self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
             self.films.removeAll();
