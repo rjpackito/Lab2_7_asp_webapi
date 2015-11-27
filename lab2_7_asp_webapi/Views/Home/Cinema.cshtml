@@ -15,7 +15,7 @@
                 <div class="panel-body">
                     <table class=" table">
                         <tr><th>Название кинотеатра</th></tr>
-                        <tbody data-bind="foreach: cinemas">
+                        <tbody data-bind="foreach: Cinemas">
                             <tr>
                                 <td data-bind="text: CinemaName"></td>
                                 <td><small><a href="#" data-bind="click: $parent.getCinema">Редактировать</a></small></td>
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="editCinema" class="col-sm-2 control-label">Название:</label>
                             <div class="col-sm-offset-1 col-sm-8">
-                                <input type="text" class="form-control" id="editCinema" data-bind="value: cinema().CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9]+)*$"  placeholder="Название кинотеатра" />
+                                <input type="text" class="form-control" id="editCinema" data-bind="value: Cinema().CinemaName" required pattern="^[а-яА-ЯёЁa-zA-Z0-9]+([\s][а-яА-ЯёЁa-zA-Z0-9]+)*$"  placeholder="Название кинотеатра" />
                             </div>
                         </div>
                         <button class="col-sm-offset-1 btn btn-default" data-bind="click: handleCancelClick,visible: edit">Отмена</button>
@@ -53,7 +53,7 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">Редактируемые данные</h2>
                 </div>
-                <table class="table" data-bind="foreach: cinema">
+                <table class="table" data-bind="foreach: Cinema">
                     <tr><td>Кинотеатр</td><td data-bind="text: CinemaName"></td></tr>
                 </table>
             </div>
@@ -66,7 +66,7 @@
 
                 <div class="panel-body">
                     <form role="form" class="form-horizontal" data-bind="submit: addCinema">
-                        <div class="form-group" data-bind="with: newcinema">
+                        <div class="form-group" data-bind="with: newCinema">
                             <label for="inputCinemaName" class="col-sm-2 control-label">Название:</label>
                             <div class="col-sm-offset-1 col-sm-8">
                                 <input type="text" class="form-control" id="inputCinemaName"

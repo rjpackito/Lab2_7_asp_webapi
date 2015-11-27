@@ -1,23 +1,23 @@
 ﻿var ViewModel = function () {
     var self = this;
-    self.cinemas = ko.observableArray();
-    self.cinema = ko.observableArray();
-    self.films = ko.observableArray();
-    self.film = ko.observableArray();
+    self.Cinemas = ko.observableArray();
+    self.Cinema = ko.observableArray();
+    self.Films = ko.observableArray();
+    self.Film = ko.observableArray();
     self.error = ko.observable();
-    self.seances = ko.observableArray();
-    self.seance = ko.observableArray();
+    self.Seances = ko.observableArray();
+    self.Seance = ko.observableArray();
     self.Affiche = ko.observableArray();
     
-    self.newcinema = {
+    self.newCinema = {
         CinemaId: ko.observable(0),
         CinemaName: ko.observable(null)
     };
-    self.newfilm = {
-        FilmId: ko.observable(),
-        FilmName: ko.observable("")
+    self.newFilm = {
+        FilmId: ko.observable(0),
+        FilmName: ko.observable(null)
     };
-    self.newseance = {
+    self.newSeance = {
         SeanceId: ko.observable(),
         FilmId: ko.observable(),
         CinemaId: ko.observable(),
@@ -52,7 +52,7 @@
     //Cinemas
     function getAllCinemas() {
         ajaxHelper(cinemasUri, 'GET').done(function (data) {
-            self.cinemas(data);
+            self.Cinemas(data);
         });
     }
     self.getCinema = function (item) {
@@ -60,41 +60,41 @@
             self.view(false);
             self.create(false);
             self.edit(true);
-            self.cinema(data);
+            self.Cinema(data);
         });
     }
     self.addCinema = function (formElement) {
-        var cinema = {
-            CinemaName: self.newcinema.CinemaName()
+        var newCinema = {
+            CinemaName: self.newCinema.CinemaName()
         };
-        ajaxHelper(cinemasUri, 'POST', cinema).done(function (item) {
+        ajaxHelper(cinemasUri, 'POST', newCinema).done(function (item) {
             if (item[0]) {
                 self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
-            self.cinemas.push(item);
-            self.newcinema.CinemaName('');
+            self.Cinemas.push(item);
+            self.newCinema.CinemaName('');
            self.handleCancelClick();
         });
     }
     self.editCinema = function (formElement) {
         var updateCinema = {
-            CinemaId: self.cinema().CinemaId,
-            CinemaName: self.cinema().CinemaName
+            CinemaId: self.Cinema().CinemaId,
+            CinemaName: self.Cinema().CinemaName
         };
         ajaxHelper(cinemasUri + '/' + updateCinema.CinemaId, 'PUT', updateCinema).done(function () {
             if (item[0]) {
                 self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
-            self.cinemas.removeAll();
+            self.Cinemas.removeAll();
             getAllCinemas();
         });
 
     }
     self.deleteCinema = function (item) {
         ajaxHelper(cinemasUri + '/' + item.CinemaId, 'DELETE').done(function () {
-            self.cinemas.removeAll();
+            self.Cinemas.removeAll();
             getAllCinemas();
         });
     }
@@ -102,7 +102,7 @@
     //Films
     function getAllFilms() {
         ajaxHelper(filmUri, 'GET').done(function (data) {
-            self.films(data);
+            self.Films(data);
         });
     }
     self.getFilm = function (item) {
@@ -110,41 +110,41 @@
             self.view(false);
             self.create(false);
             self.edit(true);
-            self.film(data);
+            self.Film(data);
         });
     }
     self.addFilm = function (formElement) {
-        var film = {
-            FilmName: self.newfilm.FilmName()
+        var newFilm = {
+            FilmName: self.newFilm.FilmName()
         };
-        ajaxHelper(filmUri, 'POST', film).done(function (item) {
+        ajaxHelper(filmUri, 'POST', newFilm).done(function (item) {
             if (item[0]) {
                 self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
        
-            self.newfilm.FilmName('');
+            self.newFilm.FilmName('');
             self.handleCancelClick();
         });
     }
     self.editFilm = function (formElement) {
         var updateFilm = {
-            FilmId: self.film().FilmId,
-            FilmName: self.film().FilmName
+            FilmId: self.Film().FilmId,
+            FilmName: self.Film().FilmName
         };
         ajaxHelper(filmUri + '/' + updateFilm.FilmId, 'PUT', updateFilm).done(function () {
             if (item[0]) {
                 self.error(item[0]._errors[0]["<ErrorMessage>k__BackingField"]);
                 return;
             }
-            self.films.removeAll();
+            self.Films.removeAll();
             getAllFilms();
         });
 
     }
     self.deleteFilm = function (item) {
         ajaxHelper(filmUri + '/' + item.FilmId, 'DELETE').done(function () {
-            self.films.removeAll();
+            self.Films.removeAll();
             getAllFilms();
         });
     }
@@ -153,7 +153,7 @@
     //Seances
     function getAllSeances() {
         ajaxHelper(seanceUri, 'GET').done(function (data) {
-            self.seances(data);
+            self.Seances(data);
         });
         self.view(true);
     }
@@ -167,35 +167,35 @@
             self.view(false);
             self.create(false);
             self.edit(true);
-            self.seance(data[0]);
-            self.editCinemaId(self.seance().CinemaId);
-            self.editFilmId(self.seance().FilmId);
-            self.editSeanceDT(self.seance().SeanceDT);
+            self.Seance(data[0]);
+            self.editCinemaId(self.Seance().CinemaId);
+            self.editFilmId(self.Seance().FilmId);
+            self.editSeanceDT(self.Seance().SeanceDT);
         });
 
     }
     self.addSeance = function (formElement) {
-        var seance = {
-            FilmId: self.newseance.FilmId(),
-            CinemaId: self.newseance.CinemaId(),
-            SeanceDT: self.newseance.SeanceDT()
+        var newSeance = {
+            FilmId: self.newSeance.FilmId(),
+            CinemaId: self.newSeance.CinemaId(),
+            SeanceDT: self.newSeance.SeanceDT()
         };
-        ajaxHelper(seanceUri, 'POST', seance).done(function (item) {
-            self.films.push(item);
+        ajaxHelper(seanceUri, 'POST', newSeance).done(function (item) {
+            self.Films.push(item);
         });
-        self.seances.removeAll();
+        self.Seances.removeAll();
         getAllSeances();
         self.handleCancelClick();
     }
     self.editSeance = function (formElement) {
         var updateSeance = {
-            SeanceId: self.seance().SeanceId,
+            SeanceId: self.Seance().SeanceId,
             FilmId: self.editFilmId(),
             CinemaId: self.editCinemaId(),
             SeanceDT: self.editSeanceDT()
         };
         ajaxHelper(seanceUri + '/' + updateSeance.SeanceId, 'PUT', updateSeance).done(function () {
-            self.seances.removeAll();
+            self.Seances.removeAll();
             getAllSeances();
 
         });
@@ -212,24 +212,24 @@
     }
     self.deleteSeance = function (item) {
         ajaxHelper(seanceUri + '/' + item.SeanceId, 'DELETE').done(function () {
-            self.seances.removeAll();
+            self.Seances.removeAll();
             getAllSeances();
         });
     }
 
     self.SearchCinema = function () {
         self.Affiche.removeAll();
-        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.CinemaName == self.stringSearchCinema(); }));
+        self.Affiche(ko.utils.arrayFilter(self.Seances(), function (s) { return s.CinemaName == self.stringSearchCinema(); }));
         self.stringSearchCinema('');
     }
     self.SearchFilm = function () {
         self.Affiche.removeAll();
-        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return s.FilmName == self.stringSearchFilm(); }));
+        self.Affiche(ko.utils.arrayFilter(self.Seances(), function (s) { return s.FilmName == self.stringSearchFilm(); }));
         self.stringSearchFilm('');
     }
     self.SearchDT = function () {
         self.Affiche.removeAll();
-        self.Affiche(ko.utils.arrayFilter(self.seances(), function (s) { return (self.fromDT()<=s.SeanceDT && self.beforeDT()>=s.SeanceDT); }));
+        self.Affiche(ko.utils.arrayFilter(self.Seances(), function (s) { return (self.fromDT()<=s.SeanceDT && self.beforeDT()>=s.SeanceDT); }));
         self.fromDT('');
         self.beforeDT('');
     }

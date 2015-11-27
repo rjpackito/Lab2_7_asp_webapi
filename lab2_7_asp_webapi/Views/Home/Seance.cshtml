@@ -17,7 +17,7 @@
         <div class="panel-body">
             <table class=" table">
                 <tr><th>Кинотеатр</th><th>Фильм</th><th>Дата и время</th></tr>
-                <tbody data-bind="foreach: seances">
+                <tbody data-bind="foreach: Seances">
                     <tr>
                         <td data-bind="text: CinemaName"></td>
                         <td data-bind="text: FilmName"> </td>
@@ -43,13 +43,13 @@
                         <div class="form-group">
                             <label for="inputAuthor" class="col-lg-2 col-sm-offset-1 control-label">Кинотеатр:</label>
                             <div class="col-sm-offset-2 col-sm-7">
-                                <select class="form-control" data-bind="options:cinemas, optionsText: 'CinemaName',optionsValue: 'CinemaId', value: editCinemaId"></select>
+                                <select class="form-control" data-bind="options: Cinemas, optionsText: 'CinemaName',optionsValue: 'CinemaId', value: editCinemaId"></select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="editFilm" class="col-lg-2 col-sm-offset-1 control-label">Фильм:</label>
                             <div class="col-sm-offset-2 col-sm-7">
-                                <select class="form-control" data-bind="options: films, optionsText: 'FilmName', optionsValue: 'FilmId', value: editFilmId"></select>
+                                <select class="form-control" data-bind="options: Films, optionsText: 'FilmName', optionsValue: 'FilmId', value: editFilmId"></select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -73,7 +73,7 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">Редактируемые данные</h2>
                 </div>
-                <table class="table" data-bind="foreach: seance">
+                <table class="table" data-bind="foreach: Seance">
                     <tr><td>Кинотеатр</td><td data-bind="text: CinemaName"></td></tr>
                     <tr><td>Фильм</td><td data-bind="text: FilmName"></td></tr>
                     <tr><td>Время сеанса</td><td data-bind="text: moment(SeanceDT).locale('ru').format('lll')"></td></tr>
@@ -94,16 +94,16 @@
                     <div class="form-group">
                         <label for="inputAuthor" class="col-sm-2 col-sm-offset-1 control-label">Кинотеатр:</label>
                         <div class="col-sm-offset-1 col-sm-7">
-                            <select class="form-control" data-bind="options:cinemas, optionsText: 'CinemaName',optionsValue:'CinemaId', value: newseance.CinemaId"></select>
+                            <select class="form-control" data-bind="options: Cinemas, optionsText: 'CinemaName',optionsValue:'CinemaId', value: newSeance.CinemaId"></select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="editFilm" class="col-sm-2 col-sm-offset-1 control-label">Фильм:</label>
                         <div class="col-sm-offset-1 col-sm-7">
-                            <select class="form-control" data-bind="options: films, optionsText: 'FilmName', optionsValue: 'FilmId', value: newseance.FilmId"></select>
+                            <select class="form-control" data-bind="options: Films, optionsText: 'FilmName', optionsValue: 'FilmId', value: newSeance.FilmId"></select>
                         </div>
                     </div>
-                    <div class="form-group" data-bind="with: newseance">
+                    <div class="form-group" data-bind="with: newSeance">
                         <label for="inputDT" class="col-sm-4 control-label">Дата и время:</label>
                         <div class=" col-sm-7">
                             <input class="form-control" type="datetime-local" max="9999-12-31 00:00" id="inputDT" data-bind="value: SeanceDT" />
